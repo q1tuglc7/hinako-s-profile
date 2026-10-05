@@ -6,148 +6,135 @@
     <title>What's "HINAKO SOGA"</title>
     <style>
         :root {
-            --navy: #233b6c;
-            --yellow: #FBE37E;
-            --yellow-hover: #f3d455;
-            --bg-light: #f4f6fa;
-            --white: #ffffff;
-            --gray-border: #e2e8f0;
-            --text-dark: #233b6c;
-            --text-muted: #5e6d8a;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --primary-navy: #233b6c;
+            --accent-yellow: #FBE37E;
+            --accent-yellow-hover: #f5d85c;
+            --text-main: #233b6c;
+            --text-sub: #4a5d82;
+            --border-color: #dbe2ef;
         }
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
         }
 
         body {
-            font-family: "Yu Gothic", "YuGothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 24px 16px;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 12px;
         }
 
-        .container {
-            background-color: var(--white);
-            max-width: 580px;
+        .card {
+            background: var(--card-bg);
+            padding: 36px 24px;
+            border-radius: 24px;
+            box-shadow: 0 12px 32px rgba(35, 59, 108, 0.08);
+            max-width: 520px;
             width: 100%;
-            border-radius: 28px;
-            box-shadow: 0 20px 40px rgba(35, 59, 108, 0.1);
-            border: 3px solid var(--navy);
-            padding: 40px 28px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid var(--border-color);
         }
 
-        .brand-badge {
+        .header-tag {
             display: inline-block;
-            background-color: var(--navy);
-            color: var(--yellow);
+            background: var(--primary-navy);
+            color: #ffffff;
+            font-size: 0.75rem;
             font-weight: bold;
-            font-size: 0.8rem;
-            padding: 6px 16px;
+            padding: 4px 12px;
             border-radius: 20px;
+            margin-bottom: 12px;
             letter-spacing: 0.08em;
-            margin-bottom: 16px;
         }
 
         h1 {
-            font-size: 1.8rem;
-            color: var(--navy);
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin: 0 0 12px 0;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
         }
 
-        .description {
-            background-color: #f8fafc;
-            border: 1px solid var(--gray-border);
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 30px;
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        .sub-title {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+            line-height: 1.6;
             text-align: center;
+            word-break: normal;
+            overflow-wrap: anywhere;
         }
 
-        .description p {
-            margin-bottom: 8px;
+        /* PCのみ改行を入れるクラス */
+        .pc-only {
+            display: inline;
         }
 
-        .description p:last-child {
-            margin-bottom: 0;
-            font-weight: bold;
-            color: var(--navy);
-        }
-
-        /* Slot machine layout */
-        .slot-board {
+        /* スロット部分 */
+        .slot-container {
+            background: #fafbfc;
+            border: 2px solid var(--primary-navy);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-bottom: 32px;
+            gap: 12px;
         }
 
         .slot-row {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background-color: var(--white);
-            border: 2px solid var(--navy);
-            border-radius: 18px;
-            padding: 8px 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 10px;
+            min-height: 48px;
         }
 
         .slot-label {
-            background-color: var(--navy);
-            color: var(--yellow);
-            font-weight: bold;
-            font-size: 0.9rem;
-            padding: 8px 12px;
-            border-radius: 12px;
-            min-width: 64px;
-            text-align: center;
+            font-weight: 700;
+            color: var(--primary-navy);
+            font-size: 0.85rem;
+            width: 54px;
             flex-shrink: 0;
+            background: var(--accent-yellow);
+            padding: 4px 0;
+            border-radius: 6px;
+            text-align: center;
         }
 
-        .slot-display {
+        .slot-window {
             flex: 1;
-            height: 48px;
+            height: 32px;
             overflow: hidden;
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 8px;
-            background-color: #fafbfc;
-            border-radius: 10px;
-            border: 1px inset rgba(0, 0, 0, 0.05);
         }
 
         .slot-text {
-            font-size: 1.05rem;
-            font-weight: bold;
-            color: var(--navy);
-            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            line-height: 1.3;
             width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 48px;
+            text-align: left;
+            word-break: break-word;
         }
 
         .slot-text.spinning {
-            animation: textShuffle 0.08s infinite linear;
-            color: #4a68a5;
+            animation: slotSpin 0.08s infinite linear;
         }
 
         .slot-text.placeholder {
@@ -155,151 +142,164 @@
             font-weight: normal;
         }
 
-        @keyframes textShuffle {
-            0% { transform: translateY(-80%); opacity: 0.3; }
+        @keyframes slotSpin {
+            0% { transform: translateY(-100%); opacity: 0.3; }
             50% { opacity: 1; }
-            100% { transform: translateY(80%); opacity: 0.3; }
+            100% { transform: translateY(100%); opacity: 0.3; }
         }
 
-        /* Row Stop Buttons */
-        .btn-row-stop {
-            background-color: var(--yellow);
-            color: var(--navy);
-            border: 2px solid var(--navy);
-            font-family: inherit;
-            font-weight: bold;
-            font-size: 0.88rem;
-            padding: 10px 14px;
-            border-radius: 12px;
+        .stop-btn {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: 0 3px 0px var(--navy);
             flex-shrink: 0;
-            min-width: 72px;
+            transition: all 0.2s ease;
         }
 
-        .btn-row-stop:hover:not(:disabled) {
-            background-color: var(--yellow-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 0px var(--navy);
+        .stop-btn:hover {
+            opacity: 0.9;
         }
 
-        .btn-row-stop:active:not(:disabled) {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0px var(--navy);
-        }
-
-        .btn-row-stop:disabled {
-            background-color: #edf2f7;
-            color: #a0aec0;
-            border-color: #cbd5e0;
-            box-shadow: none;
+        .stop-btn:disabled {
+            background-color: #cbd5e0;
             cursor: not-allowed;
         }
 
-        /* Master Start / Reset Button */
-        .btn-master {
-            background-color: var(--navy);
-            color: var(--yellow);
-            border: 3px solid var(--navy);
-            font-family: inherit;
-            font-weight: 800;
-            font-size: 1.15rem;
-            padding: 16px 32px;
+        /* メイン操作ボタン */
+        .main-btn {
+            background-color: var(--accent-yellow);
+            color: var(--primary-navy);
+            border: 2px solid var(--primary-navy);
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 6px 0px #152445;
+            box-shadow: 0 4px 0px var(--primary-navy);
             width: 100%;
-            max-width: 360px;
-            letter-spacing: 0.03em;
         }
 
-        .btn-master:hover {
-            background-color: #1a2d54;
+        .main-btn:hover {
+            background-color: var(--accent-yellow-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 0px #152445;
+            box-shadow: 0 6px 0px var(--primary-navy);
         }
 
-        .btn-master:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0px #152445;
+        .main-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px var(--primary-navy);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .container {
-                padding: 28px 18px;
+        /* スマホ向けレスポンシブスタイル (画面幅480px以下) */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 12px 8px;
             }
+
+            .card {
+                padding: 24px 16px;
+                border-radius: 18px;
+            }
+
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
+
+            .sub-title {
+                font-size: 0.82rem;
+                margin-bottom: 18px;
+                line-height: 1.5;
+            }
+
+            /* スマホではPC用改行を非表示にして自然に流す */
+            .pc-only {
+                display: none;
+            }
+
+            .slot-container {
+                padding: 10px 8px;
+                gap: 10px;
+            }
+
             .slot-row {
-                gap: 8px;
                 padding: 6px 8px;
+                gap: 6px;
             }
+
             .slot-label {
-                font-size: 0.8rem;
-                padding: 6px 8px;
-                min-width: 52px;
+                width: 46px;
+                font-size: 0.78rem;
+                padding: 3px 0;
             }
+
             .slot-text {
-                font-size: 0.92rem;
+                font-size: 0.85rem;
             }
-            .btn-row-stop {
-                font-size: 0.8rem;
-                padding: 8px 10px;
-                min-width: 60px;
+
+            .stop-btn {
+                padding: 6px 8px;
+                font-size: 0.72rem;
+            }
+
+            .main-btn {
+                font-size: 0.95rem;
+                padding: 12px 16px;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <span class="brand-badge">PROFILE GENERATOR</span>
+<div class="card">
+    <span class="header-tag">PROFILE GENERATOR</span>
     <h1>What's "HINAKO SOGA"</h1>
-
-    <div class="description">
-        <p>ここに出てくるフレーズは全部<br><strong>周りから見る曽我日向子</strong></p>
-        <p>家族や20年来の友人、バイトの同期はもちろん<br>よく行くお店で知り合った常連さんや大学の教授まで？！</p>
-        <p>その場限りの自己紹介を作ります</p>
-    </div>
-
-    <div class="slot-board">
-        <!-- Row 1: 一見 -->
+    
+    <p class="sub-title">
+        ここに出てくるフレーズは全部、周りから見る曽我日向子。<br class="pc-only">
+        家族や20年来の友人、バイトの同期はもちろん、<br class="pc-only">
+        よく行くお店で知り合った常連さんや大学の教授まで？！<br class="pc-only">
+        その場限りの自己紹介を作ります！
+    </p>
+    
+    <div class="slot-container">
+        <!-- 一見 -->
         <div class="slot-row">
             <span class="slot-label">一見</span>
-            <div class="slot-display">
-                <div class="slot-text placeholder" id="textA">ボタンを押してスタート</div>
+            <div class="slot-window">
+                <span class="slot-text placeholder" id="slotA">????</span>
             </div>
-            <button class="btn-row-stop" id="btnA" onclick="toggleSlot(0)" disabled>ストップ</button>
+            <button class="stop-btn" id="btnA" onclick="stopIndividual('A')" disabled>ストップ</button>
         </div>
 
-        <!-- Row 2: 実は -->
+        <!-- 実は -->
         <div class="slot-row">
             <span class="slot-label">実は</span>
-            <div class="slot-display">
-                <div class="slot-text placeholder" id="textB">ボタンを押してスタート</div>
+            <div class="slot-window">
+                <span class="slot-text placeholder" id="slotB">????</span>
             </div>
-            <button class="btn-row-stop" id="btnB" onclick="toggleSlot(1)" disabled>ストップ</button>
+            <button class="stop-btn" id="btnB" onclick="stopIndividual('B')" disabled>ストップ</button>
         </div>
 
-        <!-- Row 3: 結論（○○です） -->
+        <!-- 結論 -->
         <div class="slot-row">
             <span class="slot-label">結論</span>
-            <div class="slot-display">
-                <div class="slot-text placeholder" id="textC">ボタンを押してスタート</div>
+            <div class="slot-window">
+                <span class="slot-text placeholder" id="slotC">???? です！</span>
             </div>
-            <button class="btn-row-stop" id="btnC" onclick="toggleSlot(2)" disabled>ストップ</button>
+            <button class="stop-btn" id="btnC" onclick="stopIndividual('C')" disabled>ストップ</button>
         </div>
     </div>
 
-    <button class="btn-master" id="btnMaster" onclick="masterAction()">スロットを回す！</button>
+    <button class="main-btn" id="mainBtn" onclick="toggleAll()">🎰 スロットを回す！</button>
 </div>
 
 <script>
-    // Phrase datasets
     const partA = [
         "動物になめられそうだけど",
         "肉きらいそうに見えて",
@@ -331,92 +331,70 @@
         "「広告でよく見るクソゲー」マー"
     ];
 
-    // State management
-    const slots = [
-        { id: 'A', data: partA, timer: null, isSpinning: false, isStopped: false, suffix: '' },
-        { id: 'B', data: partB, timer: null, isSpinning: false, isStopped: false, suffix: '' },
-        { id: 'C', data: partC, timer: null, isSpinning: false, isStopped: false, suffix: ' です！' }
-    ];
+    let timerA = null, timerB = null, timerC = null;
+    let isSpinningA = false, isSpinningB = false, isSpinningC = false;
 
-    function getRandom(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
+    function getRandomItem(array) {
+        return array[Math.floor(Math.random() * array.length)];
     }
 
-    // Start individual slot spinning
-    function startSingleSlot(index) {
-        const slot = slots[index];
-        const textEl = document.getElementById(`text${slot.id}`);
-        const btnEl = document.getElementById(`btn${slot.id}`);
-
-        slot.isSpinning = true;
-        slot.isStopped = false;
-
-        textEl.classList.remove('placeholder');
-        textEl.classList.add('spinning');
-
-        btnEl.disabled = false;
-        btnEl.textContent = "ストップ";
-
-        if (slot.timer) clearInterval(slot.timer);
-        slot.timer = setInterval(() => {
-            textEl.textContent = getRandom(slot.data);
+    function startSpin(elementId, array) {
+        const el = document.getElementById(elementId);
+        el.classList.remove('placeholder');
+        el.classList.add('spinning');
+        return setInterval(() => {
+            el.textContent = getRandomItem(array);
         }, 60);
     }
 
-    // Stop individual slot
-    function stopSingleSlot(index) {
-        const slot = slots[index];
-        const textEl = document.getElementById(`text${slot.id}`);
-        const btnEl = document.getElementById(`btn${slot.id}`);
-
-        if (slot.timer) clearInterval(slot.timer);
-        slot.isSpinning = false;
-        slot.isStopped = true;
-
-        textEl.classList.remove('spinning');
-        const finalVal = getRandom(slot.data);
-        textEl.textContent = finalVal + slot.suffix;
-
-        btnEl.disabled = true;
-        btnEl.textContent = "確定";
-
-        checkAllStopped();
+    function stopSpin(timerId, elementId, finalValue, suffix = '') {
+        clearInterval(timerId);
+        const el = document.getElementById(elementId);
+        el.classList.remove('spinning');
+        el.textContent = finalValue + suffix;
     }
 
-    // Toggle button handler for individual row side button
-    function toggleSlot(index) {
-        const slot = slots[index];
-        if (slot.isSpinning) {
-            stopSingleSlot(index);
+    function toggleAll() {
+        const mainBtn = document.getElementById('mainBtn');
+        const isAnySpinning = isSpinningA || isSpinningB || isSpinningC;
+
+        if (!isAnySpinning) {
+            // 全回転開始
+            timerA = startSpin('slotA', partA); isSpinningA = true;
+            timerB = startSpin('slotB', partB); isSpinningB = true;
+            timerC = startSpin('slotC', partC); isSpinningC = true;
+
+            document.getElementById('btnA').disabled = false;
+            document.getElementById('btnB').disabled = false;
+            document.getElementById('btnC').disabled = false;
+
+            mainBtn.textContent = "🛑 すべてストップ！";
         } else {
-            startSingleSlot(index);
+            // 全停止
+            if (isSpinningA) stopIndividual('A');
+            if (isSpinningB) stopIndividual('B');
+            if (isSpinningC) stopIndividual('C');
         }
     }
 
-    // Master button (Start All / Reset All)
-    function masterAction() {
-        const masterBtn = document.getElementById('btnMaster');
-        const anySpinning = slots.some(s => s.isSpinning);
-
-        if (anySpinning) {
-            // Stop all currently spinning slots at once
-            slots.forEach((_, i) => {
-                if (slots[i].isSpinning) stopSingleSlot(i);
-            });
-            masterBtn.textContent = "もう一度全シャッフル！";
-        } else {
-            // Start all slots
-            slots.forEach((_, i) => startSingleSlot(i));
-            masterBtn.textContent = "一括ストップ！";
+    function stopIndividual(target) {
+        if (target === 'A' && isSpinningA) {
+            stopSpin(timerA, 'slotA', getRandomItem(partA));
+            isSpinningA = false;
+            document.getElementById('btnA').disabled = true;
+        } else if (target === 'B' && isSpinningB) {
+            stopSpin(timerB, 'slotB', getRandomItem(partB));
+            isSpinningB = false;
+            document.getElementById('btnB').disabled = true;
+        } else if (target === 'C' && isSpinningC) {
+            stopSpin(timerC, 'slotC', getRandomItem(partC), ' です！');
+            isSpinningC = false;
+            document.getElementById('btnC').disabled = true;
         }
-    }
 
-    // Check if all rows are stopped to adjust master button text
-    function checkAllStopped() {
-        const allStopped = slots.every(s => s.isStopped);
-        const masterBtn = document.getElementById('btnMaster');
-        if (allStopped) {
-            masterBtn.textContent = "もう一度全シャッフル！";
+        // 全て止まったらボタン表示を戻す
+        if (!isSpinningA && !isSpinningB && !isSpinningC) {
+            document.getElementById('mainBtn').textContent = " もう一度まわす！";
         }
     }
 </script>
