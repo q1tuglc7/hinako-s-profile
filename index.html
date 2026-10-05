@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's "HINAKO SOGA"</title>
+    <style>
+        :root {
+            --navy: #233b6c;
+            --yellow: #FBE37E;
+            --yellow-hover: #f3d455;
+            --bg-light: #f4f6fa;
+            --white: #ffffff;
+            --gray-border: #e2e8f0;
+            --text-dark: #233b6c;
+            --text-muted: #5e6d8a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Yu Gothic", "YuGothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .container {
+            background-color: var(--white);
+            max-width: 580px;
+            width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(35, 59, 108, 0.1);
+            border: 3px solid var(--navy);
+            padding: 40px 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            background-color: var(--navy);
+            color: var(--yellow);
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 6px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .description {
+            background-color: #f8fafc;
+            border: 1px solid var(--gray-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 30px;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .description p {
+            margin-bottom: 8px;
+        }
+
+        .description p:last-child {
+            margin-bottom: 0;
+            font-weight: bold;
+            color: var(--navy);
+        }
+
+        /* Slot machine layout */
+        .slot-board {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .slot-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--white);
+            border: 2px solid var(--navy);
+            border-radius: 18px;
+            padding: 8px 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .slot-label {
+            background-color: var(--navy);
+            color: var(--yellow);
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 12px;
+            min-width: 64px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .slot-display {
+            flex: 1;
+            height: 48px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 8px;
+            background-color: #fafbfc;
+            border-radius: 10px;
+            border: 1px inset rgba(0, 0, 0, 0.05);
+        }
+
+        .slot-text {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--navy);
+            text-align: left;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 48px;
+        }
+
+        .slot-text.spinning {
+            animation: textShuffle 0.08s infinite linear;
+            color: #4a68a5;
+        }
+
+        .slot-text.placeholder {
+            color: #a0aec0;
+            font-weight: normal;
+        }
+
+        @keyframes textShuffle {
+            0% { transform: translateY(-80%); opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { transform: translateY(80%); opacity: 0.3; }
+        }
+
+        /* Row Stop Buttons */
+        .btn-row-stop {
+            background-color: var(--yellow);
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 0.88rem;
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 3px 0px var(--navy);
+            flex-shrink: 0;
+            min-width: 72px;
+        }
+
+        .btn-row-stop:hover:not(:disabled) {
+            background-color: var(--yellow-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 0px var(--navy);
+        }
+
+        .btn-row-stop:active:not(:disabled) {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0px var(--navy);
+        }
+
+        .btn-row-stop:disabled {
+            background-color: #edf2f7;
+            color: #a0aec0;
+            border-color: #cbd5e0;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Master Start / Reset Button */
+        .btn-master {
+            background-color: var(--navy);
+            color: var(--yellow);
+            border: 3px solid var(--navy);
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 1.15rem;
+            padding: 16px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 0px #152445;
+            width: 100%;
+            max-width: 360px;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-master:hover {
+            background-color: #1a2d54;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0px #152445;
+        }
+
+        .btn-master:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px #152445;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 28px 18px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .slot-row {
+                gap: 8px;
+                padding: 6px 8px;
+            }
+            .slot-label {
+                font-size: 0.8rem;
+                padding: 6px 8px;
+                min-width: 52px;
+            }
+            .slot-text {
+                font-size: 0.92rem;
+            }
+            .btn-row-stop {
+                font-size: 0.8rem;
+                padding: 8px 10px;
+                min-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="brand-badge">PROFILE GENERATOR</span>
+    <h1>What's "HINAKO SOGA"</h1>
+
+    <div class="description">
+        <p>ここに出てくるフレーズは全部<br><strong>周りから見る曽我日向子</strong></p>
+        <p>家族や20年来の友人、バイトの同期はもちろん<br>よく行くお店で知り合った常連さんや大学の教授まで？！</p>
+        <p>その場限りの自己紹介を作ります</p>
+    </div>
+
+    <div class="slot-board">
+        <!-- Row 1: 一見 -->
+        <div class="slot-row">
+            <span class="slot-label">一見</span>
+            <div class="slot-display">
+                <div class="slot-text placeholder" id="textA">ボタンを押してスタート</div>
+            </div>
+            <button class="btn-row-stop" id="btnA" onclick="toggleSlot(0)" disabled>ストップ</button>
+        </div>
+
+        <!-- Row 2: 実は -->
+        <div class="slot-row">
+            <span class="slot-label">実は</span>
+            <div class="slot-display">
+                <div class="slot-text placeholder" id="textB">ボタンを押してスタート</div>
+            </div>
+            <button class="btn-row-stop" id="btnB" onclick="toggleSlot(1)" disabled>ストップ</button>
+        </div>
+
+        <!-- Row 3: 結論（○○です） -->
+        <div class="slot-row">
+            <span class="slot-label">結論</span>
+            <div class="slot-display">
+                <div class="slot-text placeholder" id="textC">ボタンを押してスタート</div>
+            </div>
+            <button class="btn-row-stop" id="btnC" onclick="toggleSlot(2)" disabled>ストップ</button>
+        </div>
+    </div>
+
+    <button class="btn-master" id="btnMaster" onclick="masterAction()">スロットを回す！</button>
+</div>
+
+<script>
+    // Phrase datasets
+    const partA = [
+        "動物になめられそうだけど",
+        "肉きらいそうに見えて",
+        "はじめて発したコトバは「カエルさん」な",
+        "オコジョ飼ってそうだけど",
+        "お腹弱そう、、、だけど",
+        "運動オンチそうな"
+    ];
+
+    const partB = [
+        "サボテンを育てたことがある",
+        "どうでもいいことをよく覚えている",
+        "コンビニアイス大体制覇！な",
+        "割とよく食べる",
+        "ガチャガチャ永遠にみている",
+        "売れるバンド青田買い打率5割の",
+        "あごの力が弱い",
+        "三度の飯より活字好き",
+        "お父さんが阿部寛に似ている",
+        "機嫌はお寿司で取る"
+    ];
+
+    const partC = [
+        "シス単マスター",
+        "長風呂",
+        "ごはん屋さん探しの天才",
+        "アボカド好き",
+        "物は忘れるが恩は忘れない義理義理ガール",
+        "「広告でよく見るクソゲー」マー"
+    ];
+
+    // State management
+    const slots = [
+        { id: 'A', data: partA, timer: null, isSpinning: false, isStopped: false, suffix: '' },
+        { id: 'B', data: partB, timer: null, isSpinning: false, isStopped: false, suffix: '' },
+        { id: 'C', data: partC, timer: null, isSpinning: false, isStopped: false, suffix: ' です！' }
+    ];
+
+    function getRandom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    // Start individual slot spinning
+    function startSingleSlot(index) {
+        const slot = slots[index];
+        const textEl = document.getElementById(`text${slot.id}`);
+        const btnEl = document.getElementById(`btn${slot.id}`);
+
+        slot.isSpinning = true;
+        slot.isStopped = false;
+
+        textEl.classList.remove('placeholder');
+        textEl.classList.add('spinning');
+
+        btnEl.disabled = false;
+        btnEl.textContent = "ストップ";
+
+        if (slot.timer) clearInterval(slot.timer);
+        slot.timer = setInterval(() => {
+            textEl.textContent = getRandom(slot.data);
+        }, 60);
+    }
+
+    // Stop individual slot
+    function stopSingleSlot(index) {
+        const slot = slots[index];
+        const textEl = document.getElementById(`text${slot.id}`);
+        const btnEl = document.getElementById(`btn${slot.id}`);
+
+        if (slot.timer) clearInterval(slot.timer);
+        slot.isSpinning = false;
+        slot.isStopped = true;
+
+        textEl.classList.remove('spinning');
+        const finalVal = getRandom(slot.data);
+        textEl.textContent = finalVal + slot.suffix;
+
+        btnEl.disabled = true;
+        btnEl.textContent = "確定";
+
+        checkAllStopped();
+    }
+
+    // Toggle button handler for individual row side button
+    function toggleSlot(index) {
+        const slot = slots[index];
+        if (slot.isSpinning) {
+            stopSingleSlot(index);
+        } else {
+            startSingleSlot(index);
+        }
+    }
+
+    // Master button (Start All / Reset All)
+    function masterAction() {
+        const masterBtn = document.getElementById('btnMaster');
+        const anySpinning = slots.some(s => s.isSpinning);
+
+        if (anySpinning) {
+            // Stop all currently spinning slots at once
+            slots.forEach((_, i) => {
+                if (slots[i].isSpinning) stopSingleSlot(i);
+            });
+            masterBtn.textContent = "もう一度全シャッフル！";
+        } else {
+            // Start all slots
+            slots.forEach((_, i) => startSingleSlot(i));
+            masterBtn.textContent = "一括ストップ！";
+        }
+    }
+
+    // Check if all rows are stopped to adjust master button text
+    function checkAllStopped() {
+        const allStopped = slots.every(s => s.isStopped);
+        const masterBtn = document.getElementById('btnMaster');
+        if (allStopped) {
+            masterBtn.textContent = "もう一度全シャッフル！";
+        }
+    }
+</script>
+
+</body>
+</html>
