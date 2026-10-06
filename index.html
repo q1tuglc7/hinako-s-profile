@@ -34,7 +34,7 @@
 
         .card {
             background: var(--card-bg);
-            padding: 28px 18px;
+            padding: 32px 24px;
             border-radius: 24px;
             box-shadow: 0 12px 32px rgba(35, 59, 108, 0.08);
             max-width: 480px;
@@ -51,12 +51,12 @@
             font-weight: bold;
             padding: 4px 12px;
             border-radius: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: 0.08em;
         }
 
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             color: var(--primary-navy);
             margin: 0 0 14px 0;
             font-weight: 700;
@@ -67,8 +67,8 @@
         .sub-title-box {
             background: #f7f9fc;
             border-radius: 16px;
-            padding: 14px 12px;
-            margin-bottom: 20px;
+            padding: 14px 14px;
+            margin-bottom: 22px;
             border: 1px solid #e2e8f0;
         }
 
@@ -78,8 +78,10 @@
             line-height: 1.7;
             margin: 0;
             text-align: center;
-            word-break: keep-all;
-            overflow-wrap: anywhere;
+        }
+
+        .nobr {
+            display: inline-block;
         }
 
         /* スロット全体容器 */
@@ -88,7 +90,7 @@
             border: 2px solid var(--primary-navy);
             border-radius: 16px;
             padding: 12px 10px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -97,19 +99,19 @@
         .slot-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             background: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 8px 10px;
-            min-height: 48px;
+            padding: 10px 12px;
+            min-height: 54px;
         }
 
         .slot-label {
             font-weight: 700;
             color: var(--primary-navy);
             font-size: 0.8rem;
-            width: 42px;
+            width: 44px;
             flex-shrink: 0;
             background: var(--accent-yellow);
             padding: 4px 0;
@@ -124,16 +126,17 @@
             justify-content: flex-start;
             padding: 0 4px;
             text-align: left;
+            min-height: 36px;
         }
 
         .slot-text {
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             font-weight: 700;
             color: var(--primary-navy);
-            line-height: 1.4;
+            line-height: 1.35;
             width: 100%;
-            word-break: keep-all;
-            overflow-wrap: anywhere;
+            word-break: break-all;
+            white-space: normal;
         }
 
         .slot-text.spinning {
@@ -215,6 +218,11 @@
                 line-height: 1.65;
             }
 
+            .slot-row {
+                padding: 8px 10px;
+                min-height: 50px;
+            }
+
             .slot-text {
                 font-size: 0.8rem;
             }
@@ -234,7 +242,10 @@
     
     <div class="sub-title-box">
         <p class="sub-title">
-            ここに出てくるフレーズは全部、周りから見る曽我日向子。家族や20年来の友人、バイトの同期はもちろん、よく行くお店で知り合った常連さんや大学の教授まで？！その場限りの自己紹介を作ります！
+            <span class="nobr">ここに出てくるフレーズは全部、</span><span class="nobr">周りから見る曽我日向子。</span><br>
+            <span class="nobr">家族や20年来の友人、</span><span class="nobr">バイトの同期はもちろん、</span><br>
+            <span class="nobr">よく行くお店で知り合った常連さんや</span><span class="nobr">大学の教授まで？！</span><br>
+            <span class="nobr">その場限りの自己紹介を作ります！</span>
         </p>
     </div>
     
@@ -274,10 +285,10 @@
     const partA = [
         "動物になめられそうだけど",
         "肉きらいそうに見えて",
-        "はじめて発したコトバは「カエルさん」な",
+        "はじめて発したコトバは「カエルさん」だけど",
         "オコジョ飼ってそうだけど",
         "お腹弱そう、、、だけど",
-        "運動オンチそうな"
+        "運動オンチだけど"
     ];
 
     const partB = [
@@ -288,7 +299,7 @@
         "ガチャガチャ永遠にみている",
         "売れるバンド青田買い打率5割の",
         "あごの力が弱い",
-        "三度の飯より活字好き",
+        "三度の飯より活字好きな",
         "お父さんが阿部寛に似ている",
         "機嫌はお寿司で取る"
     ];
@@ -299,7 +310,7 @@
         "ごはん屋さん探しの天才",
         "アボカド好き",
         "物は忘れるが恩は忘れない義理義理ガール",
-        "「広告でよく見るクソゲー」ゲーマー"
+        "「広告でよく見るクソゲー」マー"
     ];
 
     let timerA = null, timerB = null, timerC = null;
